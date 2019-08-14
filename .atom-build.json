@@ -1,0 +1,4 @@
+{
+    "cmd": "latexmk {FILE_ACTIVE}",
+    "cwd": "{FILE_ACTIVE_PATH}"
+}
