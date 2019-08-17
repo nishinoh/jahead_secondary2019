@@ -19,7 +19,7 @@ org_jahead_w7 <- readDataFile("~/Data/JAHEAD/1185/1185.sav")
 
 ##### 2. CSVファイルにリストを作成し、それを読み込んで共通変数名をつける =================
 # あらかじめ作成した変数名の対応表一覧を利用する
-var_table <- read_csv("00_variable_names.csv")
+var_table <- read_csv("src/00_variable_names.csv")
 
 selectVariables <- function(data, var_table, module){
     # moduleで入力した変数名とcommon_nameをペアにしておく    
@@ -39,9 +39,27 @@ selectVariables <- function(data, var_table, module){
     return(out)
 }
 
-test <- selectVariables(org_jahead_w5to6, var_table, module="wave6_main")
 
+##### 3. 作成した関数を使って読み込む =========================
+# ループで読み込んでオブジェクトを作った後、
+# recovery(jxx0004系の変数)を使って、該当しないケースを落とす。
 
-modules <- c("w1", "w2", "w3", "w4_main", "w4_alt",
-             "w5_main", "w5_alt", "w6_main", "w6_alt", "w7_main", "w7_alt")
+# さらにfor文を書くのが面倒だったので、ファイルごとにループ
+modules_w5to6 <- c("wave5_main", "wave5_alt", "wave5_miss",
+             "wave6_main", "wave6_alt", "wave6_miss")
+for(module in modules_w5to6){
+    data <- selectVariables(org_jahead_w5to6, var_table, module=module) %>% 
+        filter(!is.na(recovery))
+    assign(str_c("data_", module), data)
+}
 
+modules_w7 <- c("wave7_main", "wave7_alt", "wave7_miss")
+for(module in modules_w7){
+    data <- selectVariables(org_jahead_w7, var_table, module=module) %>% 
+        filter(!is.na(recovery))
+    assign(str_c("data_", module), data)
+}
+
+# 補足: 本調査票・代行調査票・欠票の識別はjxx004系の変数で大丈夫という確認
+# org_jahead_w5to6 %>% 
+#     count(j5v004, j5p004, j5n004)
