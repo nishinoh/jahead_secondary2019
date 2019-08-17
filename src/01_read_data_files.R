@@ -47,19 +47,44 @@ selectVariables <- function(data, var_table, module){
 # さらにfor文を書くのが面倒だったので、ファイルごとにループ
 modules_w5to6 <- c("wave5_main", "wave5_alt", "wave5_miss",
              "wave6_main", "wave6_alt", "wave6_miss")
+
 for(module in modules_w5to6){
     data <- selectVariables(org_jahead_w5to6, var_table, module=module) %>% 
-        filter(!is.na(recovery))
+        filter(!is.na(recovery)) %>% 
+        mutate(module = module,
+               wave = parse_number(module))
     assign(str_c("data_", module), data)
 }
 
 modules_w7 <- c("wave7_main", "wave7_alt", "wave7_miss")
 for(module in modules_w7){
     data <- selectVariables(org_jahead_w7, var_table, module=module) %>% 
-        filter(!is.na(recovery))
+        filter(!is.na(recovery)) %>% 
+        mutate(module = module,
+               wave = parse_number(module))
     assign(str_c("data_", module), data)
 }
 
 # 補足: 本調査票・代行調査票・欠票の識別はjxx004系の変数で大丈夫という確認
 # org_jahead_w5to6 %>% 
 #     count(j5v004, j5p004, j5n004)
+
+##### 4. Waveを縦に結合してlongデータを作成 =================================
+# ひたすら縦に接続。調査票ごとに結合してから、全体で結合する。
+
+data_main_ques <- data_wave5_main %>% 
+    bind_rows(data_wave6_main, data_wave7_main) %>% 
+    mutate(ques_type = "本調査票")
+
+data_alt_ques <- data_wave5_alt %>% 
+    bind_rows(data_wave6_alt, data_wave7_alt) %>% 
+    mutate(ques_type = "代行票")
+
+data_missing_ques <- data_wave5_miss %>% 
+    bind_rows(data_wave6_miss, data_wave7_miss) %>% 
+    mutate(ques_type = "欠票")
+
+# 全て結合したデータを作成
+data_long <- data_main_ques %>% 
+    bind_rows(data_alt_ques, data_missing_ques) %>% 
+    arrange(id)
