@@ -3,11 +3,15 @@ library(foreign)
 
 # 各Waveごとのデータ読み込み
 # エンコーディングの都合上havenでなくforeignで
-# 変数ラベルは各フォルダにテキストファイルがある
-org_jahead_w1to3 <- read.spss("~/Data/JAHEAD/0395/0395.sav", to.data.frame = TRUE, reencode = "CP932")
-org_jahead_w4 <- read.spss("~/Data/JAHEAD/0679/0679.sav", to.data.frame = TRUE, reencode = "CP932")
-org_jahead_w5to6 <- read.spss("~/Data/JAHEAD/0823/0823.sav", to.data.frame = TRUE, reencode = "CP932")
-org_jahead_w7 <- read.spss("~/Data/JAHEAD/1185/1185.sav", to.data.frame = TRUE, reencode = "CP932")
+readDataFile <- function(file){
+    read.spss(file, to.data.frame = TRUE, reencode = "CP932") %>% 
+        as.tibble(.)
+}
+
+org_jahead_w1to3 <- readDataFile("~/Data/JAHEAD/0395/0395.sav")
+org_jahead_w4 <- readDataFile("~/Data/JAHEAD/0679/0679.sav")
+org_jahead_w5to6 <- readDataFile("~/Data/JAHEAD/0823/0823.sav")
+org_jahead_w7 <- readDataFile("~/Data/JAHEAD/1185/1185.sav")
 
 
 ##### 1.1. CSVファイルにリストを作成し、それを読み込んで共通変数名をつける =================
@@ -32,12 +36,9 @@ selectVariables <- function(data, var_table, module){
         select(!! var_pair) %>%
         filter(!is.na(.[[module]]))
     
-    # データから、該当する列を取り出す
+    # データから該当する列を取り出し、名前を共通の変数名に変更
     out <- data %>%
-        as.tibble() %>%
         select(var_names[[module]])
-    
-    # 名前を共通の変数名に変更
     names(out) <- var_names$common_name
     
     return(out)
