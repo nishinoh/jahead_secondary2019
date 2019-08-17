@@ -18,7 +18,7 @@ org_jahead_w7 <- readDataFile("~/Data/JAHEAD/1185/1185.sav")
 
 
 ##### 2. CSVファイルにリストを作成し、それを読み込んで共通変数名をつける =================
-
+# あらかじめ作成した変数名の対応表一覧を利用する
 var_table <- read_csv("00_variable_names.csv")
 
 selectVariables <- function(data, var_table, module){
