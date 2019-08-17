@@ -87,4 +87,5 @@ data_missing_ques <- data_wave5_miss %>%
 # 全て結合したデータを作成
 data_long <- data_main_ques %>% 
     bind_rows(data_alt_ques, data_missing_ques) %>% 
-    arrange(id)
+    arrange(id) %>% 
+    select(id, wave, ques_type, everything()) #waveと調査票だけ順番を先に持ってくるよう順序を入れ替え
