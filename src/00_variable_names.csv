@@ -1,4 +1,4 @@
-﻿common_name,wave1,wave2,wave3,wave4_main,wave4_alt,wave4_miss,wave5_main,wave5_alt,wave5_miss,wave6_main,wave6_alt,wave6_miss,wave7_main,wave7_alt,wave7_miss,rq_recode,rq_cal,drop_after_step,label,class,memo
+﻿common_name,wave1,wave2,wave3,wave4_main,wave4_proxy,wave4_miss,wave5_main,wave5_proxy,wave5_miss,wave6_main,wave6_proxy,wave6_miss,wave7_main,wave7_proxy,wave7_miss,rq_recode,rq_cal,drop_after_step,label,class,memo
 id,,,,,,,id,id,id,id,id,id,id,id,id,,,,,,
 area,,,,,,,j5v001,j5p001,j5n001,j6v001,j6p001,j6n001,J7V001,J7P001,J7N001,,,,地域,,
 city_size,,,,,,,j5v002,j5p002,j5n002,j6v002,j6p002,j6n002,J7V002,J7P002,J7N002,,,,市郡規模,,

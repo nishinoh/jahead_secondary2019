@@ -1,4 +1,4 @@
-# 前準備 ========================================================
+##### 0. 前準備 ========================================================
 library(tidyverse)
 library(foreign)
 
@@ -45,8 +45,8 @@ selectVariables <- function(data, var_table, module){
 # recovery(jxx0004系の変数)を使って、該当しないケースを落とす。
 
 # さらにfor文を書くのが面倒だったので、ファイルごとにループ
-modules_w5to6 <- c("wave5_main", "wave5_alt", "wave5_miss",
-             "wave6_main", "wave6_alt", "wave6_miss")
+modules_w5to6 <- c("wave5_main", "wave5_proxy", "wave5_miss",
+             "wave6_main", "wave6_proxy", "wave6_miss")
 
 for(module in modules_w5to6){
     data <- selectVariables(org_jahead_w5to6, var_table, module=module) %>% 
@@ -56,7 +56,7 @@ for(module in modules_w5to6){
     assign(str_c("data_", module), data)
 }
 
-modules_w7 <- c("wave7_main", "wave7_alt", "wave7_miss")
+modules_w7 <- c("wave7_main", "wave7_proxy", "wave7_miss")
 for(module in modules_w7){
     data <- selectVariables(org_jahead_w7, var_table, module=module) %>% 
         filter(!is.na(recovery)) %>% 
@@ -76,8 +76,8 @@ data_main_ques <- data_wave5_main %>%
     bind_rows(data_wave6_main, data_wave7_main) %>% 
     mutate(ques_type = "本調査票")
 
-data_alt_ques <- data_wave5_alt %>% 
-    bind_rows(data_wave6_alt, data_wave7_alt) %>% 
+data_proxy_ques <- data_wave5_proxy %>% 
+    bind_rows(data_wave6_proxy, data_wave7_proxy) %>% 
     mutate(ques_type = "代行票")
 
 data_missing_ques <- data_wave5_miss %>% 
@@ -86,10 +86,12 @@ data_missing_ques <- data_wave5_miss %>%
 
 # 全て結合したデータを作成
 data_joint_allwaves <- data_main_ques %>% 
-    bind_rows(data_alt_ques, data_missing_ques) %>% 
+    bind_rows(data_proxy_ques, data_missing_ques) %>% 
     arrange(id) %>% 
     select(id, wave, ques_type, everything()) #waveと調査票だけ順番を先に持ってくるよう順序を入れ替え
 
-# ファイルを保存して、いったん全てのオブジェクトは削除
+##### Fin. 作成したファイルを保存 ================================================
+# 作成したファイルを保存し、これまで作ったオブジェクトはいったん全て削除
+
 save(data_joint_allwaves, file="~/Data/JAHEAD/Process_Files/data_after_01.rda")
 rm(list = ls())
