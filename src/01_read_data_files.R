@@ -85,7 +85,11 @@ data_missing_ques <- data_wave5_miss %>%
     mutate(ques_type = "欠票")
 
 # 全て結合したデータを作成
-data_long <- data_main_ques %>% 
+data_joint_allwaves <- data_main_ques %>% 
     bind_rows(data_alt_ques, data_missing_ques) %>% 
     arrange(id) %>% 
     select(id, wave, ques_type, everything()) #waveと調査票だけ順番を先に持ってくるよう順序を入れ替え
+
+# ファイルを保存して、いったん全てのオブジェクトは削除
+save(data_joint_allwaves, file="~/Data/JAHEAD/Process_Files/data_after_01.rda")
+rm(list = ls())
