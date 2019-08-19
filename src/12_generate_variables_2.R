@@ -30,7 +30,7 @@ data_long <- data_long %>%
 
 ##### 2. 手助けをしてくれる人の存在を数値型に ======================================
 # アウトカムに使うADLとIADLの手助けをしてくれる人の存在を、
-# 連続変数に直す(カテゴリのラベルとなっている数字を割り当てる)
+# 連続変数に変更し、値を反転させる。
 data_long <- data_long %>% 
     mutate(exist_helper_adl_l = 6 - unclass(exist_helper_adl),
            exist_helper_iadl_l = 6 - unclass(exist_helper_iadl))
