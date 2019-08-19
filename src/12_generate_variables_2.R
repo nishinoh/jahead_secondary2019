@@ -3,7 +3,7 @@ library(tidyverse)
 
 load("~/Data/JAHEAD/Process_Files/data_after_11.rda")
 
-##### 1. 私的ケアの変数を確認 =================================
+##### 1. 回答者がどの程度手助けを受けているか =================================
 # Waveごとにfactorの水準(言い回し程度)が異なっているので、揃える
 
 # ADLについて助けてくれる人の存在
@@ -28,6 +28,23 @@ data_long <- data_long %>%
                                        c("ほとんどいつもいた", "ときどきいた", "まれにいた",
                                          "いなかった", "必要なかった")))
 
+##### 2. 手助けをしてくれる人の存在を数値型に ======================================
+# アウトカムに使うADLとIADLの手助けをしてくれる人の存在を、
+# 連続変数に直す(カテゴリのラベルとなっている数字を割り当てる)
+data_long <- data_long %>% 
+    mutate(exist_helper_adl_l = 6 - unclass(exist_helper_adl),
+           exist_helper_iadl_l = 6 - unclass(exist_helper_iadl))
+
+# パネルで変化をみたいので、元気だった頃からの変化も追いたい。
+# もともとは、ADLの困難度がゼロの場合、手助けをする人の存在がそもそも尋ねられないが、
+# ADLの困難度がゼロのケースも、exist_helper_adl_lは1(必要がなかった)を与えておく。
+data_long <- data_long %>%
+    mutate(exist_helper_adl_l = case_when(lim_adl == 0 ~ 1,
+                                          TRUE ~ exist_helper_adl_l),
+           exist_helper_adl_l = case_when(lim_iadl == 0 ~ 1,
+                                          TRUE ~ exist_helper_iadl_l))
+
+##### 3. 手助けをしてくれる人は誰か ====================================
 # ADLやIADLなどについて助けてくれる人は誰か
 
 data_long <- data_long %>% 
