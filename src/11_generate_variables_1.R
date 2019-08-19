@@ -1,6 +1,5 @@
 ##### 0. 前準備 ========================================================
 library(tidyverse)
-library(foreign)
 
 load("~/Data/JAHEAD/Process_Files/data_after_01.rda")
 data_long <- data_joint_allwaves
