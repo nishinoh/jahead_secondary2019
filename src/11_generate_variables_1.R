@@ -102,6 +102,22 @@ data_long <- data_long %>%
            lim_ability = select(., one_of(newitems_ability)) %>% 
                                 rowSums(na.rm = FALSE))
 
+##### 4. ニードの重さの区分 =====================================
+# ADL、IADLのどちらもニードなし (この場合、介護者の存在は質問されない)
+# 
+
+# ADLとIADLの度合いを確認
+# data_long %>% group_by(lim_iadl) %>% 
+#     summarise(mean_adl = mean(lim_adl, na.rm=TRUE),
+#               n = n())
+
+data_long <- data_long %>% 
+    mutate(need_level = case_when(lim_adl == 0 & lim_iadl == 0 ~ "ニードなし",
+                            lim_adl <= 1 & lim_iadl >= 1 ~ "IADLのみあり",
+                            lim_adl >= 2 ~ "ADLのニードあり",
+                            TRUE ~ NA_character_
+                            ))
+
 ##### Fin. 作成したファイルを保存 ================================================
 # 作成したファイルを保存し、これまで作ったオブジェクトはいったん全て削除
 
