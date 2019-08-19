@@ -32,6 +32,10 @@ data_long <- data_long %>%
                                       )) %>% 
     mutate(city_size_c = fct_relevel(city_size_c, c("町村", "10万未満の市", "10万以上の市", "政令市と特別区")))
 
+# 世帯の人数を数値型に
+data_long <- data_long %>% 
+    mutate(num_hh_member = as.numeric(num_hh_member))
+
 ##### Fin. 作成したファイルを保存 ================================================
 # 作成したファイルを保存し、これまで作ったオブジェクトはいったん全て削除
 
