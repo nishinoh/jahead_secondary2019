@@ -8,23 +8,23 @@ load("~/Data/JAHEAD/Process_Files/data_after_11.rda")
 
 # ADLについて助けてくれる人の存在
 data_long <- data_long %>% 
-    mutate(is_helped_adl = recode(is_helped_adl,
+    mutate(exist_helper_adl = recode(exist_helper_adl,
                                   `DK` = NA_character_,
                                   `DK/NA` = NA_character_,
                                   `NA` = NA_character_,
                                   `非該当` = NA_character_),
-           is_helped_adl = fct_relevel(is_helped_adl,
+           exist_helper_adl = fct_relevel(exist_helper_adl,
                                        c("ほとんどいつもいた", "ときどきいた", "まれにいた",
                                          "いなかった", "必要なかった")))
 
 # IADLについて助けてくれる人の存在
 data_long <- data_long %>% 
-    mutate(is_helped_iadl = recode(is_helped_iadl,
+    mutate(exist_helper_iadl = recode(exist_helper_iadl,
                                   `DK` = NA_character_,
                                   `DK/NA` = NA_character_,
                                   `NA` = NA_character_,
                                   `非該当` = NA_character_),
-           is_helped_iadl = fct_relevel(is_helped_iadl,
+           exist_helper_iadl = fct_relevel(exist_helper_iadl,
                                        c("ほとんどいつもいた", "ときどきいた", "まれにいた",
                                          "いなかった", "必要なかった")))
 
