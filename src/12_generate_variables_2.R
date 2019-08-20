@@ -41,7 +41,7 @@ data_long <- data_long %>%
 data_long <- data_long %>%
     mutate(exist_helper_adl_l = case_when(lim_adl == 0 ~ 1,
                                           TRUE ~ exist_helper_adl_l),
-           exist_helper_adl_l = case_when(lim_iadl == 0 ~ 1,
+           exist_helper_iadl_l = case_when(lim_iadl == 0 ~ 1,
                                           TRUE ~ exist_helper_iadl_l))
 
 ##### 3. 手助けをしてくれる人は誰か ====================================
