@@ -13,6 +13,11 @@ newitems_adl <- str_c(items_adl, "_b")
 newitems_iadl <- str_c(items_iadl, "_b")
 newitems_ability <- str_c(items_ability, "_b")
 
+##### 0.1 共通で使うような変数を新たに作成 ==============================
+data_long <- data_long %>% 
+    mutate(id_personyear = str_c(id, "-", wave)) %>% 
+    select(id, wave, id_personyear, everything())
+
 ##### 1. ADL制約などの変数の水準を揃える =================================
 # Waveごとにfactorの水準(言い回し程度)が異なっているので、揃える
 
