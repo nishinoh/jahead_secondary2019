@@ -13,9 +13,9 @@ generateChilds <- function(data, variable){
     data %>%
         # まずは必要な変数だけ抜き出す
         # containsだけで絞れないかもしれないので、先に子どもの変数だけ抜き出して、2段階で抜き出す
-        select(id, wave, id_personyear, starts_with("ch_")) %>% 
-        select(id, wave, id_personyear, contains(quote_varname)) %>% 
-        gather(key=question, value=value, -id, -wave, -id_personyear) %>% 
+        select(id_text, wave, id_personyear, starts_with("ch_")) %>% 
+        select(id_text, wave, id_personyear, contains(quote_varname)) %>% 
+        gather(key=question, value=value, -id_text, -wave, -id_personyear) %>% 
         # 下で4～5文字目を抜き出すというのは、「ch_01_age」などの形式の変数名となっているのが前提
         # 変数名は「00_bariable_names.csv」のファイルを参照
         mutate(ch_number = str_sub(question, 4,5)) %>% 
@@ -23,9 +23,9 @@ generateChilds <- function(data, variable){
         filter(value != "NA",
                value != "非該当") %>% 
         #子ども番号が、別のWaveでは一貫しないので、id_personyearごとにだけIDを作る
-        mutate(id_personyear_child = str_c(id_personyear, "-", ch_number),
-               id_child = str_c(id, "-", ch_number)) %>% 
-        select(id, id_personyear, id_personyear_child, id_child, wave, ch_number, value) %>% 
+        mutate(id_personyear_child = str_c(id_personyear, "-C", ch_number),
+               id_child = str_c(id_text, "-C", ch_number)) %>% 
+        select(id_text, id_personyear, id_personyear_child, id_child, wave, ch_number, value) %>% 
         mutate(ch_number = as.integer(ch_number)) %>% 
         rename(!!output_varname := value)
 }
@@ -40,7 +40,7 @@ dyad_ch_working <- generateChilds(data_long, working) # 働いているか
 dyad_ch_dist_living <- generateChilds(data_long, dist_living)
 
 # 結合
-id_var <- c("id", "id_personyear", "id_personyear_child", "id_child", "wave", "ch_number")
+id_var <- c("id_text", "id_personyear", "id_personyear_child", "id_child", "wave", "ch_number")
 data_child_dyad <- dyad_ch_sex %>%
     left_join(dyad_ch_age, by=id_var) %>% 
     left_join(dyad_ch_married, by=id_var) %>% 

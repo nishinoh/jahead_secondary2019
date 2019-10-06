@@ -15,8 +15,8 @@ newitems_ability <- str_c(items_ability, "_b")
 
 ##### 0.1 共通で使うような変数を新たに作成 ==============================
 data_long <- data_long %>% 
-    mutate(id_text = str_pad(id, width=9, pad="0")) %>% 
-    mutate(id_personyear = str_c(id_text, "-", wave)) %>% 
+    mutate(id_text = str_pad(id, width=8, pad="0")) %>% 
+    mutate(id_personyear = str_c(id_text, "-W", wave)) %>% 
     select(id, id_text, wave, id_personyear, everything())
 
 ##### 1. ADL制約などの変数の水準を揃える =================================
