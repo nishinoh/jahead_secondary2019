@@ -13,3 +13,8 @@ source("src/13_generate_variables_3.R", echo=TRUE)
 # 年齢・性別など基本属性
 source("src/14_generate_variables_4.R", echo=TRUE)
 
+##### 2. 子どものダイアドを作成
+# 子どもについて聞かれた情報からダイアド形式のデータを作成
+source("src/21_generate_dyads.R", echo=FALSE)
+
+source("src/22_unite_respondents.R", echo=FALSE)
