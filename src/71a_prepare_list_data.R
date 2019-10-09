@@ -42,7 +42,7 @@ data_complete_cases <- data_united %>%
 
 ##### ダイアドで使う変数だけ抜き出す ====================================================
 data_stan_child <- data_complete_cases %>% 
-    select(id_personyear_child_n, do_care_parents_adl, #ADLで支援のある人を抜き出す
+    select(id_personyear_n, do_care_parents_adl, #ADLで支援のある人を抜き出す
            ch_female, ch_age, ch_married, ch_dist_living_l, ch_working)
 
 ##### 回答者の各時点データを抜き出す =====================================================
@@ -52,7 +52,8 @@ data_stan_panel <- data_complete_cases %>%
     distinct(id_personyear, .keep_all = TRUE) %>% 
     mutate(t_female = case_when(t_gender == "女性" ~ 1,
                                 t_gender == "男性" ~ 0)) %>% 
-    select(id_personyear_n, t_age, t_female, lim_adl, use_dayservice_n, num_hh_member)
+    arrange(id_personyear_n) %>% 
+    select(t_age, t_female, lim_adl, use_dayservice_n, num_hh_member)
 
 # 念のためIDが問題なく作れているかチェック
 # max(data_stan_child$id_personyear_child_n)
