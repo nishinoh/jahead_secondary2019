@@ -14,7 +14,7 @@ load("~/Data/JAHEAD/Process_Files/data_after_21.rda")
 
 # 回答者(親)の情報のうち必要なものだけ抜き出し
 tmp <- data_long %>% 
-    select(id, id_text, id_personyear, wave, int_year,
+    select(id, id_text, id_personyear, wave, int_year, t_age, t_gender,
            num_hh_member,
            use_dayservice, use_shortstay, use_homehelp, use_dayservice_n, use_shortstay_n, use_homehelp_n,
            lim_adl, lim_iadl, lim_ability, needs_type,
