@@ -107,11 +107,11 @@ for(item in items_ability){
 # ダミー変数の合計点
 data_long <- data_long %>% 
     mutate(lim_adl = select(., one_of(newitems_adl)) %>% 
-                                rowSums(na.rm = FALSE),
+                                rowSums(na.rm = TRUE),
            lim_iadl = select(., one_of(newitems_iadl)) %>% 
-                                rowSums(na.rm = FALSE),
+                                rowSums(na.rm = TRUE),
            lim_ability = select(., one_of(newitems_ability)) %>% 
-                                rowSums(na.rm = FALSE))
+                                rowSums(na.rm = TRUE))
 
 ##### 4. ニードの重さの区分 =====================================
 # ADL、IADLのどちらもニードなし (この場合、介護者の存在は質問されない)
