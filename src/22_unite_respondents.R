@@ -32,5 +32,5 @@ data_united %>% group_by(id) %>% summarise(n=n())
 ##### Fin. 作成したファイルを保存 ================================================
 # 作成したファイルを保存し、これまで作ったオブジェクトはいったん全て削除
 
-save(data_united, file="~/Data/JAHEAD/Process_Files/data_after_21.rda")
+save(data_united, file="~/Data/JAHEAD/Process_Files/data_after_22.rda")
 rm(list = ls())
