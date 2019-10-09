@@ -1,5 +1,11 @@
 ##### 0. 前準備 ========================================================
-library(tidyverse)
+# library(tidyverse)
+library(dplyr)
+library(tidyr)
+library(stringr)
+library(forcats)
+library(tibble)
+library(readr)
 library(foreign)
 
 ##### 1. データの読み込み =======================================

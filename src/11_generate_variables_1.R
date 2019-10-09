@@ -1,5 +1,11 @@
 ##### 0. 前準備 ========================================================
-library(tidyverse)
+# library(tidyverse)
+library(dplyr)
+library(tidyr)
+library(stringr)
+library(forcats)
+library(tibble)
+library(readr)
 
 load("~/Data/JAHEAD/Process_Files/data_after_01.rda")
 data_long <- data_joint_allwaves

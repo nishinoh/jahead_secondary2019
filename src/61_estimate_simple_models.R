@@ -1,5 +1,8 @@
 ##### 0. 前準備 ========================================================
-library(tidyverse)
+# library(tidyverse)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
 library(plm)
 library(texreg)
 library(broom)
