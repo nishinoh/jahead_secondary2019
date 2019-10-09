@@ -53,6 +53,19 @@ data_child_dyad <- dyad_ch_sex %>%
     left_join(dyad_ch_working, by=id_var) %>% 
     left_join(dyad_ch_dist_living, by=id_var)
 
+##### 3. 不具合修正 ==================================================
+# ラベルの中身がWaveごとに全角半角混在していたので揃える
+data_child_dyad <- data_child_dyad %>% 
+    mutate(ch_dist_living = case_when(ch_dist_living == "１０分未満" ~ "10分未満",
+                                      ch_dist_living == "１時間未満" ~ "1時間未満",
+                                      ch_dist_living == "１時間以上" ~ "1時間以上",
+                                      ch_dist_living == "DK" ~ NA_character_,
+                                      ch_dist_living == "DK/NA" ~ NA_character_,
+                                      TRUE ~ ch_dist_living)) %>% 
+    mutate(ch_dist_living = fct_relevel(ch_dist_living,
+                                        c("同居", "10分未満", "1時間未満", "1時間以上"))) %>% 
+    mutate(ch_dist_living_l = unclass(ch_dist_living))
+
 ##### Fin. 作成したファイルを保存 ================================================
 # 作成したファイルを保存し、これまで作ったオブジェクトはいったん全て削除
 

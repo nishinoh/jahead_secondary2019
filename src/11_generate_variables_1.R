@@ -123,11 +123,18 @@ data_long <- data_long %>%
 #               n = n())
 
 data_long <- data_long %>% 
-    mutate(need_level = case_when(lim_adl == 0 & lim_iadl == 0 ~ "ニードなし",
-                            lim_adl <= 1 & lim_iadl >= 1 ~ "IADLのみあり",
-                            lim_adl >= 2 ~ "ADLのニードあり",
-                            TRUE ~ NA_character_
-                            ))
+    mutate(needs_type = case_when(lim_adl >= 1 & lim_iadl >= 1 ~ "どちらも必要",
+                                  lim_adl >= 1 & lim_iadl == 0 ~ "ADLだけ必要",
+                                  lim_adl == 0 & lim_iadl >= 1 ~ "IADLだけ必要",
+                                  lim_adl == 0 & lim_iadl == 0 ~ "どちらも不要"))
+
+# これくらいの方がバランスはいいのかもしれないが、ADLで難しいのが2つ以上という区分でいいのか。
+# data_long <- data_long %>% 
+#     mutate(need_level = case_when(lim_adl == 0 & lim_iadl == 0 ~ "ニードなし",
+#                             lim_adl <= 1 & lim_iadl >= 1 ~ "IADLのみあり",
+#                             lim_adl >= 2 ~ "ADLのニードあり",
+#                             TRUE ~ NA_character_
+#                             ))
 
 ##### Fin. 作成したファイルを保存 ================================================
 # 作成したファイルを保存し、これまで作ったオブジェクトはいったん全て削除

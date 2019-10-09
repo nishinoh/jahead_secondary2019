@@ -17,7 +17,7 @@ tmp <- data_long %>%
     select(id, id_text, id_personyear, wave, int_year,
            num_hh_member,
            use_dayservice, use_shortstay, use_homehelp, use_dayservice_n, use_shortstay_n, use_homehelp_n,
-           lim_adl, lim_iadl, lim_ability,
+           lim_adl, lim_iadl, lim_ability, needs_type,
            exist_helper_adl, exist_helper_adl_l, exist_helper_iadl, exist_helper_iadl_l,
            who_helped_1_c, who_helped_1_ch_id, who_helped_2_c, who_helped_2_ch_id)
 
