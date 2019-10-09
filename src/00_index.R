@@ -16,5 +16,7 @@ source("src/14_generate_variables_4.R", echo=TRUE)
 ##### 2. 子どものダイアドを作成
 # 子どもについて聞かれた情報からダイアド形式のデータを作成
 source("src/21_generate_dyads.R", echo=FALSE)
-
+# 子どものデータと親(回答者)のデータを結合
 source("src/22_unite_respondents.R", echo=FALSE)
+# 親子データから新たな変数を作成
+source("src/23_generate_childs_variables_1.R", echo=FALSE)
