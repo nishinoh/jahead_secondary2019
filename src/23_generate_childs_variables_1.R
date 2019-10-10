@@ -31,13 +31,19 @@ data_united <- data_united %>%
                                        TRUE ~ do_care_parents))
 
 data_united <- data_united %>% 
-    mutate(do_care_parents_adl = case_when(do_care_parents == 1 & needs_type == "どちらも必要" ~ 1,
-                                           do_care_parents == 1 & needs_type == "ADLだけ必要" ~ 1,
-                                           is.na(do_care_parents) ~ NA_real_,
+    mutate(do_care_parents_adl = case_when(do_care_parents == 1 & exist_helper_adl_l >= 3 ~ 1,
                                            TRUE ~ 0)) %>% 
-    mutate(do_care_parents_iadl = case_when(do_care_parents == 1 & needs_type == "IADLだけ必要" ~ 1,
-                                            is.na(do_care_parents) ~ NA_real_,
+    mutate(do_care_parents_iadl = case_when(do_care_parents == 1 & exist_helper_iadl_l >= 3 ~ 1,
                                             TRUE ~ 0))
+
+# data_united <- data_united %>% 
+#     mutate(do_care_parents_adl = case_when(do_care_parents == 1 & needs_type == "どちらも必要" ~ 1,
+#                                            do_care_parents == 1 & needs_type == "ADLだけ必要" ~ 1,
+#                                            is.na(do_care_parents) ~ NA_real_,
+#                                            TRUE ~ 0)) %>% 
+#     mutate(do_care_parents_iadl = case_when(do_care_parents == 1 & needs_type == "IADLだけ必要" ~ 1,
+#                                             is.na(do_care_parents) ~ NA_real_,
+#                                             TRUE ~ 0))
 
 ##### Fin. 作成したファイルを保存 ================================================
 # 作成したファイルを保存し、これまで作ったオブジェクトはいったん全て削除
