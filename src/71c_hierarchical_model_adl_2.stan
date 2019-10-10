@@ -11,7 +11,7 @@ data {
     int<lower=0, upper=1> t_female[P]; //回答者の性別(女性ダミー)
     int<lower=0, upper=6> lim_adl[P]; //ここから世帯単位の情報
     int<lower=0> num_hh_member[P]; //世帯の人数
-    int<lower=0, upper=1> use_dayservice_n[P]; //特に着目する説明変数
+    int<lower=0> use_dayservice_n[P]; //特に着目する説明変数
 }
 
 parameters {
