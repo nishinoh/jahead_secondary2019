@@ -20,3 +20,7 @@ source("src/21_generate_dyads.R", echo=TRUE)
 source("src/22_unite_respondents.R", echo=TRUE)
 # 親子データから新たな変数を作成
 source("src/23_generate_childs_variables_1.R", echo=TRUE)
+
+##### 7. Stanで推定 ===================================================
+# 
+source("src/71a_prepare_list_data.R", echo=TRUE)
