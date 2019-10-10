@@ -24,3 +24,4 @@ source("src/23_generate_childs_variables_1.R", echo=TRUE)
 ##### 7. Stanで推定 ===================================================
 # 
 source("src/71a_prepare_list_data.R", echo=TRUE)
+source("src/72a_prepare_list_data_iadl.R", echo=TRUE)
