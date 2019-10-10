@@ -54,6 +54,7 @@ data_stan_panel <- data_complete_cases %>%
                                 t_gender == "男性" ~ 0)) %>% 
     arrange(id_personyear_n) %>% 
     select(t_age, t_female, lim_adl, use_dayservice_n, num_hh_member)
+    # mutate(use_dayservice_n = if_else(use_dayservice_n == 0, 0, 1))
 
 # 念のためIDが問題なく作れているかチェック
 # max(data_stan_child$id_personyear_child_n)
