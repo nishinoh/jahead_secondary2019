@@ -21,20 +21,23 @@ screenreg(result1)
 ##### 固定効果モデルで分析 =========================================
 data_panel <- pdata.frame(data_long, index=c("id", "wave"))
 
-# ADLについての分析
+# ADLについて固定効果モデルで推定
 result_2 <- plm(exist_helper_adl_l ~ use_dayservice_n + lim_adl +  num_hh_member,
                 data=data_panel, index=c("id", "wave"), model="within")
 screenreg(result_2)
 
-result <- tidy(result_2, conf.int = TRUE) %>%
-    #filter(term!="(Intercept)") %>%
+# 作図用のデータを準備
+result <- broom::tidy(result_2, conf.int = TRUE) %>%
+    # 並べ替え用の数字
     mutate(num = row_number()) %>% 
+    # 変数ごとに日本語のラベルを作成
     mutate(term_j = recode(term,
                            `lim_adl` = "ADLの制約度",
                            `use_dayservice_n` = "デイサービスの利用頻度",
                            `num_hh_member` = "世帯人数"
     ))
 
+# キャタピラープロットの作図
 p <- ggplot(result) +
     geom_pointrange(aes(x=reorder(term_j, -num), y=estimate,
                         ymax=conf.high, ymin=conf.low),
