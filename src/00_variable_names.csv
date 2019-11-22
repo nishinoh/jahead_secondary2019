@@ -14,9 +14,9 @@ t_birth_y,,,,,,,Tbirth_y,Tbirth_y,Tbirth_y,Tbirth_y,Tbirth_y,Tbirth_y,Tbirth_y,T
 t_bitth_m,,,,,,,Tbirth_m,Tbirth_m,Tbirth_m,Tbirth_m,Tbirth_m,Tbirth_m,Tbirth_m,Tbirth_m,Tbirth_m,,,台帳記載の生年月日(月),,,
 t_gender,,,,,,,Tgender,Tgender,Tgender,Tgender,Tgender,Tgender,Tgender,Tgender,Tgender,,,台帳記載の性別,1,2,Waveでラベルが違う（日本語・英語)
 ,,,,,,,,,,,,,,,,,,,,,
-marital_status,,,,,,,,j5p024,,j6v030,j6p027,,J7V030,J7P027,,,,現在の婚姻状態(配偶者ありでも別居はありうる),1,5,
-num_hh_member,,,,,,,,j5p025,,j6v091,j6p029,,J7V091,J7P084,,,,世帯の人数(回答者も含んだ人数)　※別変数で年齢・性別・続柄のみあり,,,
-house,,,,,,,,,,j6v377,,,,J7P177,,あり,,住んでいる場所　※他の変数にもう少しだけ詳細あり,1,13,
+marital_status,,,,,,,j5v034,j5p024,,j6v030,j6p027,,J7V030,J7P027,,,,現在の婚姻状態(配偶者ありでも別居はありうる),1,5,
+num_hh_member,,,,,,,j5v118,j5p025,,j6v091,j6p029,,J7V091,J7P084,,,,世帯の人数(回答者も含んだ人数)　※別変数で年齢・性別・続柄のみあり,,,
+house,,,,,,,j5v423,,,j6v377,,,,J7P177,,あり,,住んでいる場所　※他の変数にもう少しだけ詳細あり,1,13,
 is_house_owner,,,,,,,,j5p107,,,,,,J7P181,,あり,,家が持ち家か否か,1(持ち家),2(持ち家以外),
 ,,,,,,,,,,,,,,,,,,,,,
 couple_income,,,,,,,,,,j6v400,,,,,,,,夫婦の年収(仕送り・年金込み)　※内訳の詳細も他の変数であり,1,6(2000万以上),
