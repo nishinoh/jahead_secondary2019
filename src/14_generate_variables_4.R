@@ -42,6 +42,35 @@ data_long <- data_long %>%
 data_long <- data_long %>% 
     mutate(num_hh_member = as.numeric(num_hh_member))
 
+# 同じ世帯に配偶者が住んでいるか
+# 世帯構成員に配偶者がいるかどうかで判断し、そもそも未回答はNAにする
+use_only_next_chain <- data_long %>% select(id_personyear, contains("hh_mem")) %>% 
+    gather(key=key, value=value, -id_personyear, -num_hh_member) %>% 
+    filter(str_detect(key, "relation")) %>% 
+    # カテゴリの整理
+    mutate(value = case_when(value == "NA" ~ NA_character_,
+                             value == "DK/NA" ~ NA_character_,
+                             value == "非該当" ~ NA_character_,
+                             TRUE ~ value)) %>% 
+    mutate(value = fct_collapse(value,
+                               living_respondent = c("本人"),
+                               living_spouse = c("配偶者"),
+                               living_childs = c("子ども", "子供"),
+                               living_childs_spouse = c("子どもの配偶者", "子供の配偶者", "子の配偶者"),
+                               living_grand_childs = c("孫", "孫の配偶者"),
+                               living_other = c("その他", "兄弟姉妹", "父母", "配偶者の父母"))) %>% 
+    # 人数を数える
+    filter(!is.na(value)) %>% 
+    count(id_personyear, value) %>% 
+    spread(key = value, value = n) %>% 
+    select(id_personyear, living_respondent, living_spouse, living_childs, living_childs_spouse, living_grand_childs, living_other) %>% 
+    # NAを0に変更。他はそのまま維持。livingから始まる列全てに適用。
+    mutate_at(vars(starts_with("living")), funs(ifelse(is.na(.),0,.)))
+
+# 世帯員の情報を結合
+data_long <- data_long %>% 
+    left_join(use_only_next_chain, by="id_personyear")
+
 ##### Fin. 作成したファイルを保存 ================================================
 # 作成したファイルを保存し、これまで作ったオブジェクトはいったん全て削除
 
