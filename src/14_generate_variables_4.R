@@ -38,13 +38,15 @@ data_long <- data_long %>%
                                       )) %>% 
     mutate(city_size_c = fct_relevel(city_size_c, c("町村", "10万未満の市", "10万以上の市", "政令市と特別区")))
 
+##### 2. 世帯の情報を作成 =================================
 # 世帯の人数を数値型に
 data_long <- data_long %>% 
     mutate(num_hh_member = as.numeric(num_hh_member))
 
 # 同じ世帯に配偶者が住んでいるか
 # 世帯構成員に配偶者がいるかどうかで判断し、そもそも未回答はNAにする
-use_only_next_chain <- data_long %>% select(id_personyear, contains("hh_mem")) %>% 
+tmp <- data_long %>%
+    select(id_personyear, contains("hh_mem")) %>% 
     gather(key=key, value=value, -id_personyear, -num_hh_member) %>% 
     filter(str_detect(key, "relation")) %>% 
     # カテゴリの整理
@@ -63,13 +65,17 @@ use_only_next_chain <- data_long %>% select(id_personyear, contains("hh_mem")) %
     filter(!is.na(value)) %>% 
     count(id_personyear, value) %>% 
     spread(key = value, value = n) %>% 
-    select(id_personyear, living_respondent, living_spouse, living_childs, living_childs_spouse, living_grand_childs, living_other) %>% 
+    select(id_personyear, living_respondent, living_spouse, living_childs,
+           living_childs_spouse, living_grand_childs, living_other) %>% 
     # NAを0に変更。他はそのまま維持。livingから始まる列全てに適用。
     mutate_at(vars(starts_with("living")), funs(ifelse(is.na(.),0,.)))
 
 # 世帯員の情報を結合
 data_long <- data_long %>% 
-    left_join(use_only_next_chain, by="id_personyear")
+    left_join(tmp, by="id_personyear")
+
+# 他で上のtmpがうっかり使われないよう削除
+rm(tmp)
 
 ##### Fin. 作成したファイルを保存 ================================================
 # 作成したファイルを保存し、これまで作ったオブジェクトはいったん全て削除
