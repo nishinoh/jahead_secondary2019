@@ -68,7 +68,7 @@ tmp <- data_long %>%
     select(id_personyear, living_respondent, living_spouse, living_childs,
            living_childs_spouse, living_grand_childs, living_other) %>% 
     # NAを0に変更。他はそのまま維持。livingから始まる列全てに適用。
-    mutate_at(vars(starts_with("living")), funs(ifelse(is.na(.),0,.)))
+    mutate_at(vars(starts_with("living_")), funs(replace_na(., 0)))
 
 # 世帯員の情報を結合
 data_long <- data_long %>% 
