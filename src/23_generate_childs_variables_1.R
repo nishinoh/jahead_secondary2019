@@ -13,8 +13,12 @@ load("~/Data/JAHEAD/Process_Files/data_after_22.rda")
 data_united <- data_united %>% 
     # 子ども番号から、親にケアを提供しているか否かを変数化
     # 番号が指し示す子どもが変数を通して一定であることが前提
-    mutate(do_care_parents_primary = if_else((who_helped_1_c == "子ども" & ch_number == who_helped_1_ch_id), 1, 0),
-           do_care_parents_secondary = if_else(who_helped_2_c == "子ども" & ch_number == who_helped_2_ch_id, 1, 0)) %>% 
+    mutate(do_care_parents_primary = case_when((is_child == "子ども" & who_helped_1_c == "子ども" & ch_number == who_helped_1_ch_id) ~ 1,
+                                               (is_child == "子の配偶者" & who_helped_1_c == "子の配偶者" & ch_number == who_helped_1_ch_id) ~ 1,
+                                               TRUE ~ 0),
+           do_care_parents_secondary = case_when((is_child == "子ども" & who_helped_2_c == "子ども" & ch_number == who_helped_2_ch_id) ~ 1,
+                                                 (is_child == "子の配偶者" & who_helped_2_c == "子の配偶者" & ch_number == who_helped_2_ch_id) ~ 1,
+                                                 TRUE ~ 0)) %>% 
     mutate(do_care_parents = case_when(do_care_parents_primary == 1 | do_care_parents_secondary == 1 ~ 1,
                                        is.na(who_helped_1_c) ~ NA_real_,
                                        TRUE ~ 0))
