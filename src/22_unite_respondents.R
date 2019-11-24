@@ -1,3 +1,6 @@
+##### このファイルについて ========================================================
+# 子どものノードに、親の情報を付け足していく
+
 ##### 0. 前準備 ========================================================
 # library(tidyverse)
 library(dplyr)
@@ -8,7 +11,7 @@ library(tibble)
 library(readr)
 
 load("~/Data/JAHEAD/Process_Files/data_after_14.rda")
-load("~/Data/JAHEAD/Process_Files/data_after_21.rda")
+load("~/Data/JAHEAD/Process_Files/data_after_21_2.rda")
 
 ##### 1. データを統合
 
