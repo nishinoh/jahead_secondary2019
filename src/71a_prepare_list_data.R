@@ -14,6 +14,7 @@ load("~/Data/JAHEAD/Process_Files/data_after_23.rda")
 # リストにしてStanに渡すべきケースをここで完全に特定する
 
 data_complete_cases <- data_united %>% 
+    filter(is_child == "子ども") %>% 
     # Stanに投入する変数だけ抜き出す
     select(id_personyear_child, id_personyear, id_text,
            do_care_parents_adl, #ADLで支援のある人を抜き出す
