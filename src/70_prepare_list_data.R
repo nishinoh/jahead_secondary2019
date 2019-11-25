@@ -61,7 +61,7 @@ data_stan_panel <- data_complete_cases %>%
     arrange(id_personyear_n) %>% 
     select(id_personyear, id_personyear_n, t_age, t_female, lim_adl, lim_iadl,
            use_dayservice_n, use_homehelp_n,
-           num_hh_member)
+           living_spouse)
     # mutate(use_dayservice_n = if_else(use_dayservice_n == 0, 0, 1))
 
 # 念のためIDが問題なく作れているかチェック
