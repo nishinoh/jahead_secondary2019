@@ -1,7 +1,7 @@
 library(rstan)
 library(ggmcmc)
 
-load("~/Data/JAHEAD/Process_Files/data_after_71.rda")
+load("~/Data/JAHEAD/Process_Files/data_after_70.rda")
 fit_model <- stan(file="src/71c_hierarchical_model_adl_2.stan", data=list_stan_adl, cores = 4, seed=1234,
                   iter = 10000, warmup = 5000, thin=5)
 save(fit_model, file="~/Data/JAHEAD/Process_Files/stan_result_varying_intercept_adl1.rda")
