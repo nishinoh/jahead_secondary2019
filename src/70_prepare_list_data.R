@@ -78,6 +78,6 @@ list_stan_adl <- c(list(C = nrow(data_stan_child)),
 
 ##### Fin. 作成したファイルを保存 ================================================
 # 作成したファイルを保存し、これまで作ったオブジェクトはいったん全て削除
-save(data_complete_cases, file = "~/Data/JAHEAD/Process_Files/data_after_71_data_frame.rda")
-save(list_stan_adl, file="~/Data/JAHEAD/Process_Files/data_after_71.rda")
+save(data_complete_cases, file = "~/Data/JAHEAD/Process_Files/data_after_70_data_frame.rda")
+save(list_stan_adl, file="~/Data/JAHEAD/Process_Files/data_after_70.rda")
 rm(list = ls())

@@ -16,12 +16,13 @@ source("src/14_generate_variables_4.R", echo=TRUE)
 ##### 2. 子どものダイアドを作成
 # 子どもについて聞かれた情報からダイアド形式のデータを作成
 source("src/21_generate_dyads.R", echo=TRUE)
+# 子どものダイアドに子の配偶の情報も含める
+source("src/21_2_generate_dyads_childs_spouse.R", echo=TRUE)
 # 子どものデータと親(回答者)のデータを結合
 source("src/22_unite_respondents.R", echo=TRUE)
 # 親子データから新たな変数を作成
 source("src/23_generate_childs_variables_1.R", echo=TRUE)
 
 ##### 7. Stanで推定 ===================================================
-# 
-source("src/71a_prepare_list_data.R", echo=TRUE)
-source("src/72a_prepare_list_data_iadl.R", echo=TRUE)
+#共通で使うケースを抜き出す
+source("src/70_prepare_list_data.R", echo=TRUE)
