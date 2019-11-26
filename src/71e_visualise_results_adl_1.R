@@ -8,10 +8,10 @@ post <- summary(fit_model)$summary %>%
     mutate(term = row.names(.)) %>% 
     mutate(num = row_number()) %>% 
     filter(num >= 2,
-           num <= 9)
+           num <= 8)
 
-display <- c("b_1", "b_2", "b_3", "b_4", "bp_1", "bp_2", "bp_3", "bp_4")
-term_full <- c("子の性別(女性=1)", "子の年齢", "子の仕事(有職=1)", "居住場所の距離", "親の性別", "親のADL困難度", "親の世帯人数", "デイサービス利用回数")
+display <- c("b_1", "b_2", "b_3", "bp_1", "bp_2", "bp_3", "bp_4")
+term_full <- c("実の子ども", "子の性別(女性=1)", "居住場所の距離", "親の性別", "親のADL困難度", "親が配偶者と居住", "デイサービス利用回数")
 term_list <- tibble(term = display,
                     term_full = term_full)
 
