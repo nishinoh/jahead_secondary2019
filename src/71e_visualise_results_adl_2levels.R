@@ -1,6 +1,6 @@
 library(ggplot2)
 
-load("~/Data/JAHEAD/Process_Files/stan_result_varying_intercept_adl1.rda")
+load("~/Data/JAHEAD/Process_Files/stan_result_varying_intercept_adl_2levels.rda")
 
 post <- summary(fit_model)$summary %>% 
     #head(., 30) %>% 
