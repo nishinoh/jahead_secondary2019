@@ -36,7 +36,7 @@ parameters {
 }
 
 transformed parameters {
-    real q[C]; //最終的な線形予測子
+    real q[I]; //最終的な線形予測子
     real ac[C]; // 子どものペア別切片
     real ap[P]; // 回答者パーソンイヤー別切片
     real ar[R]; // 回答者個人別切片
@@ -55,8 +55,8 @@ model {
         do_care_parents_adl[i] ~ bernoulli(q[i]);
     for(c in 1:C)
         ec[c] ~ normal(0, sigma_c);
-    for (p in 1:P)
+    for(p in 1:P)
         ep[p] ~ normal(0, sigma_p);
-    for (r in 1:R)
+    for(r in 1:R)
         er[r] ~ normal(0, sigma_r);
 }
