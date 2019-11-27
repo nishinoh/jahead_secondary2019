@@ -23,7 +23,8 @@ load("~/Data/JAHEAD/Process_Files/data_after_23.rda")
 data_complete_cases <- data_united %>% 
     # Stanに投入する変数だけ抜き出す
     # ここで抽出したケースが分析のサンプルサイズを決めるので、モデルで使わない変数は落とす
-    select(id_personyear_child_d, id_personyear_child, id_personyear, id_text,
+    # 子どもの婚姻状態は使うかかなり迷っているので、念のため残しておく
+    select(id_personyear_child_d, id_personyear_child, id_personyear, id_text, wave,
            do_care_parents_adl, #ADLで支援のある人を抜き出す
            do_care_parents_iadl, #IADLで支援のある人を抜き出す
            is_child, ch_sex, ch_married, ch_dist_living_l,
