@@ -3,8 +3,9 @@ library(ggmcmc)
 
 load("~/Data/JAHEAD/Process_Files/data_after_75a_76a.rda")
 fit_model <- stan(file="src/75b_hierarchical_model_adl_3levels.stan", data=list_stan_3levels, cores = 4, seed=1234,
-                  iter = 1000, warmup = 500)
-save(fit_model, file="~/Data/JAHEAD/Process_Files/stan_result_varying_intercept_adl_4levels.rda")
+                  iter = 10000, warmup = 5000, thin = 5)
+save(fit_model, file="~/Data/JAHEAD/Process_Files/stan_result_varying_intercept_adl_3levels.rda")
+
 fit_model
 # トレースプロット
 stan_trace(fit_model, inc_warmup = TRUE)
