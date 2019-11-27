@@ -25,7 +25,6 @@ parameters {
     real bp_2; // 係数@ニードの重さ
     real bp_3; // 係数@配偶者と住んでいるか
     real bp_4; // 係数@デイケア利用
-    real br_1; // 係数@回答者の性別(女性ダミー)
     real ec[C]; //子ども世帯レベルの残差
     real ep[P]; //回答者パーソンイヤーレベルの残差
     real<lower=0> sigma_c;
