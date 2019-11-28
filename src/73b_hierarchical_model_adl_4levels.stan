@@ -40,14 +40,14 @@ transformed parameters {
     real ac[C]; // 子どものペア別切片
     real ap[P]; // 回答者パーソンイヤー別切片
     real ar[R]; // 回答者個人別切片
-    for(i in 1:I)
-        q[i] = inv_logit(ac[id_personyear_child_n[i]] + bi_1*is_real_child[i] + bi_2*ch_female[i]);
-    for(c in 1:C)
-        ac[c] = ap[id_personyear_n[c]] + bc_1*ch_dist_living_l[c] + ec[c];
-    for(p in 1:P)
-        ap[p] = ar[id_n[p]] + bp_1*lim_adl[p] + bp_2*living_spouse[p] + bp_3*use_dayservice_n[p] + ep[p];
     for(r in 1:R)
         ar[r] = b_0 + br_1*t_female[r] + er[r];
+    for(p in 1:P)
+        ap[p] = ar[id_n[p]] + bp_1*lim_adl[p] + bp_2*living_spouse[p] + bp_3*use_dayservice_n[p] + ep[p];
+    for(c in 1:C)
+        ac[c] = ap[id_personyear_n[c]] + bc_1*ch_dist_living_l[c] + ec[c];
+    for(i in 1:I)
+        q[i] = inv_logit(ac[id_personyear_child_n[i]] + bi_1*is_real_child[i] + bi_2*ch_female[i]);
 }
 
 model {
