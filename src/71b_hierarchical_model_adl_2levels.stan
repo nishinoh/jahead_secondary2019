@@ -15,31 +15,29 @@ data {
 
 parameters {
     real b_0; // 全体切片
-    real b_1; // 係数@子の子どもかは子の配偶者か
-    real b_2; // 係数@子の性別
-    real b_3; // 係数@子の住んでいる距離
-    // real bp_1; // 係数@回答者の年齢
+    real bc_1; // 係数@子の子どもかは子の配偶者か
+    real bc_2; // 係数@子の性別
+    real bc_3; // 係数@子の住んでいる距離
     real bp_1; // 係数@回答者の性別(女性ダミー)
     real bp_2; // 係数@ニードの重さ
     real bp_3; // 係数@配偶者と住んでいるか
     real bp_4; // 係数@デイケア利用
-    real b_p[P];
+    real ep[P];
     real<lower=0> sigma_p;
 }
 
 transformed parameters {
     real q[C];
-    real x_p[P];
+    real ap[P];
     for(p in 1:P)
-        x_p[p] = bp_1*t_female[p] + bp_2*lim_adl[p] + bp_3*living_spouse[p] + bp_4*use_dayservice_n[p] + b_p[p];//bp_1*t_age[p] + 
+        ap[p] = b_0 + bp_1*t_female[p] + bp_2*lim_adl[p] + bp_3*living_spouse[p] + bp_4*use_dayservice_n[p] + ep[p];
     for(c in 1:C)
-        q[c] = inv_logit(b_0 + x_p[id_personyear_n[c]] +
-                         b_1*is_real_child[c] + b_2*ch_female[c] + + b_3*ch_dist_living_l[c]);
+        q[c] = inv_logit(ap[id_personyear_n[c]] + bc_1*is_real_child[c] + bc_2*ch_female[c] + bc_3*ch_dist_living_l[c]);
 }
 
 model {
     for (p in 1:P)
-        b_p[p] ~ normal(0, sigma_p);
+        ep[p] ~ normal(0, sigma_p);
     for (c in 1:C)
         do_care_parents_adl[c] ~ bernoulli(q[c]);
 }
