@@ -16,7 +16,7 @@ load("~/Data/JAHEAD/Process_Files/data_after_70_data_frame.rda")
 data_stan_individuals <- data_complete_cases %>% 
     # IDは自分の階層と1つ上の階層のものだけ含めないとエラーになる
     select(id_personyear_child_d_n, id_personyear_child_n,
-           do_care_parents_adl, do_care_parents_iadl, 
+           do_care_parents_adl, do_care_parents_iadl, do_care_parents_iadl_only,
            is_real_child, ch_female, ch_married)
 
 ##### 3. 子ども夫婦単位(C)の変数だけ抜き出す =====================================================

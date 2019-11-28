@@ -11,7 +11,7 @@ load("~/Data/JAHEAD/Process_Files/data_after_70_data_frame.rda")
 ##### 子どもでベル(C)の変数だけ抜き出す ====================================================
 data_stan_childs <- data_complete_cases %>% 
     select(id_personyear_child_d_n, id_personyear_child_n, id_personyear_n, id_n,
-           do_care_parents_adl, do_care_parents_iadl, 
+           do_care_parents_adl, do_care_parents_iadl, do_care_parents_iadl_only,
            is_real_child, ch_female, ch_married, ch_dist_living_l)
 
 ##### 回答者のパーソンイヤー単位(P)の変数だけ抜き出す =====================================================

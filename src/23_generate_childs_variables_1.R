@@ -38,7 +38,9 @@ data_united <- data_united %>%
     mutate(do_care_parents_adl = case_when(do_care_parents == 1 & exist_helper_adl_l >= 3 ~ 1,
                                            TRUE ~ 0)) %>% 
     mutate(do_care_parents_iadl = case_when(do_care_parents == 1 & exist_helper_iadl_l >= 3 ~ 1,
-                                            TRUE ~ 0))
+                                            TRUE ~ 0)) %>% 
+    mutate(do_care_parents_iadl_only = case_when(do_care_parents_adl == 0 & do_care_parents_iadl == 1 ~ 1,
+                                                 TRUE ~ 0))
 
 # data_united <- data_united %>% 
 #     mutate(do_care_parents_adl = case_when(do_care_parents == 1 & needs_type == "どちらも必要" ~ 1,

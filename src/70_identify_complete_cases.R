@@ -27,6 +27,7 @@ data_complete_cases <- data_united %>%
     select(id_personyear_child_d, id_personyear_child, id_personyear, id_text, wave,
            do_care_parents_adl, #ADLで支援のある人を抜き出す
            do_care_parents_iadl, #IADLで支援のある人を抜き出す
+           do_care_parents_iadl_only,
            is_child, ch_sex, ch_married, ch_dist_living_l,
            # 親の情報でモデルに含める変数
            t_age, lim_adl, lim_iadl, use_dayservice_n, use_homehelp_n, living_spouse,
