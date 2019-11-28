@@ -25,4 +25,4 @@ source("src/23_generate_childs_variables_1.R", echo=TRUE)
 
 ##### 7. Stanで推定 ===================================================
 #共通で使うケースを抜き出す
-source("src/70_prepare_list_data.R", echo=TRUE)
+source("src/70_identify_complete_cases.R", echo=TRUE)
