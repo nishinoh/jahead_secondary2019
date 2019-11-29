@@ -23,9 +23,11 @@ source("src/22_unite_respondents.R", echo=TRUE)
 # 親子データから新たな変数を作成
 source("src/23_generate_childs_variables_1.R", echo=TRUE)
 
-##### 7. Stanで推定 ===================================================
+##### 4. 分析に使うデータを特定する ========================================
 # 共通で使うケースを抜き出す
-source("src/70_identify_complete_cases.R", echo=TRUE)
+source("src/41_identify_complete_cases.R", echo=TRUE)
+
+##### 7. Stanで推定 ===================================================
 
 # それぞれの推定に使うデータを作成
 source("src/71a_72a_prepare_list_for_2level_models.R", echo=TRUE)

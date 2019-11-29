@@ -64,5 +64,5 @@ data_complete_cases <- data_united %>%
 
 ##### Fin. 作成したファイルを保存 ================================================
 # 作成したファイルを保存し、これまで作ったオブジェクトはいったん全て削除
-save(data_complete_cases, file = "~/Data/JAHEAD/Process_Files/data_after_70_data_frame.rda")
+save(data_complete_cases, file = "~/Data/JAHEAD/Process_Files/data_after_41_data_frame.rda")
 rm(list = ls())

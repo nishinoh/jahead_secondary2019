@@ -10,7 +10,7 @@
 # library(tidyverse)
 library(dplyr)
 
-load("~/Data/JAHEAD/Process_Files/data_after_70_data_frame.rda")
+load("~/Data/JAHEAD/Process_Files/data_after_41_data_frame.rda")
 
 ##### 1. 完全な個人単位(I)の変数だけ抜き出す ====================================================
 data_stan_individuals <- data_complete_cases %>% 

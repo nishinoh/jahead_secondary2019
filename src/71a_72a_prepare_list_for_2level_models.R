@@ -6,7 +6,7 @@
 # library(tidyverse)
 library(dplyr)
 
-load("~/Data/JAHEAD/Process_Files/data_after_70_data_frame.rda")
+load("~/Data/JAHEAD/Process_Files/data_after_41_data_frame.rda")
 
 ##### 子どもでベル(C)の変数だけ抜き出す ====================================================
 data_stan_childs <- data_complete_cases %>% 
