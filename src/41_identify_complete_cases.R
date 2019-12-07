@@ -30,7 +30,7 @@ data_complete_cases <- data_united %>%
            do_care_parents_iadl_only,
            is_child, ch_sex, ch_married, ch_dist_living_l,
            # 親の情報でモデルに含める変数
-           t_age, lim_adl, lim_iadl, use_dayservice_n, use_homehelp_n, living_spouse,
+           t_age, lim_adl, lim_iadl, use_dayservice_d, use_dayservice_n, use_homehelp_d, use_homehelp_n, living_spouse,
            t_gender
            ) %>% 
     # ここから加工するべき変数を加工する

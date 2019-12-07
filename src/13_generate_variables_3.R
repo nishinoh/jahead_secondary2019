@@ -28,6 +28,12 @@ data_long <- recodePublicService(data_long, "use_dayservice")
 data_long <- recodePublicService(data_long, "use_shortstay")
 data_long <- recodePublicService(data_long, "use_homehelp")
 
+# 公的サービスを利用しているか否かのダミー変数を作成
+data_long <- data_long %>% 
+    mutate(use_dayservice_d = if_else(use_dayservice_n > 0, 1, 0),
+           use_shortstay_d = if_else(use_shortstay_n > 0, 1, 0),
+           use_homehelp_d = if_else(use_homehelp_n > 0, 1, 0))
+
 ##### Fin. 作成したファイルを保存 ================================================
 # 作成したファイルを保存し、これまで作ったオブジェクトはいったん全て削除
 

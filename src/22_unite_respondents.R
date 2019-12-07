@@ -19,7 +19,9 @@ load("~/Data/JAHEAD/Process_Files/data_after_21_2.rda")
 tmp <- data_long %>% 
     select(id, id_text, id_personyear, wave, int_year, t_age, t_gender,
            num_hh_member, living_spouse,
-           use_dayservice, use_shortstay, use_homehelp, use_dayservice_n, use_shortstay_n, use_homehelp_n,
+           use_dayservice, use_shortstay, use_homehelp,
+           use_dayservice_d, use_shortstay_d, use_homehelp_d,
+           use_dayservice_n, use_shortstay_n, use_homehelp_n,
            lim_adl, lim_iadl, lim_ability, needs_type,
            exist_helper_adl, exist_helper_adl_l, exist_helper_iadl, exist_helper_iadl_l,
            who_helped_1_c, who_helped_1_ch_id, who_helped_2_c, who_helped_2_ch_id)
