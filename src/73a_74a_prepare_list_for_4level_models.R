@@ -32,7 +32,7 @@ data_stan_panels <- data_complete_cases %>%
     distinct(id_personyear, .keep_all = TRUE) %>% 
     arrange(id_personyear_n) %>% 
     select(id_personyear_n, id_n, t_age, lim_adl, lim_iadl,
-           use_dayservice_n, use_homehelp_n,
+           use_dayservice_d, use_homehelp_d,
            living_spouse)
 
 ##### 3. 回答者単位(R)の変数だけ抜き出す =====================================================
