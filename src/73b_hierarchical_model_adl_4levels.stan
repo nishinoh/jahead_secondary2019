@@ -13,7 +13,7 @@ data {
     // real<lower=0> t_age[P]; //回答者の年齢
     int<lower=0, upper=6> lim_adl[P]; //ここから世帯単位の情報
     int<lower=0, upper=1> living_spouse[P]; //配偶者と住んでいるか
-    int<lower=0> use_dayservice_d[P]; //特に着目する説明変数
+    int<lower=0, upper=1> use_dayservice_d[P]; //特に着目する説明変数
     int<lower=0, upper=1> t_female[R]; //回答者の性別(女性ダミー)
 }
 
