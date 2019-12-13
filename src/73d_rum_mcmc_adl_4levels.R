@@ -8,13 +8,13 @@ save(fit_model_adl, file="~/Data/JAHEAD/Process_Files/stan_result_varying_interc
 
 fit_model
 # トレースプロット
-stan_trace(fit_model, inc_warmup = TRUE)
-stan_trace(fit_model)
+stan_trace(fit_model_adl, inc_warmup = TRUE)
+stan_trace(fit_model_adl)
 # 事後分布
-stan_dens(fit_model, separate_chains = TRUE)
+stan_dens(fit_model_adl, separate_chains = TRUE)
 # 自己相関
-stan_ac(fit_model)
+stan_ac(fit_model_adl)
 # R_hatの分布
-stan_rhat(fit_model)
+stan_rhat(fit_model_adl)
 # 実効サンプルサイズ
-stan_ess(fit_model)
+stan_ess(fit_model_adl)
