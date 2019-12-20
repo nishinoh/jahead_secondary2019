@@ -6,7 +6,7 @@ fit_model_adl <- stan(file="src/73b_hierarchical_model_adl_4levels.stan", data=l
                   iter = 25000, warmup = 5000, thin = 5)
 save(fit_model_adl, file="~/Data/JAHEAD/Process_Files/stan_result_varying_intercept_adl_4levels.rda")
 
-fit_model
+fit_model_adl
 # トレースプロット
 stan_trace(fit_model_adl, inc_warmup = TRUE)
 stan_trace(fit_model_adl)

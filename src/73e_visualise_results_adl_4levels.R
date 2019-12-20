@@ -3,7 +3,7 @@ library(rstan)
 
 load("~/Data/JAHEAD/Process_Files/stan_result_varying_intercept_adl_4levels.rda")
 
-post <- summary(fit_model)$summary %>% 
+post <- summary(fit_model_adl)$summary %>% 
     #head(., 30) %>% 
     as.data.frame(.) %>% 
     mutate(term = row.names(.)) %>% 
