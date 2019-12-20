@@ -37,6 +37,8 @@ p <- fig_data %>%
           axis.title.y=element_blank())
 print(p)
 
-quartz(file="~/downloads/fig_result_adl_4levels.pdf", type="pdf",  width=8,height=4.5)
+# 以下の保存場所は、分析者の個人的なフォルダ環境です。
+# 他の方がこのコードを使うときは、各自の環境に合わせて指定してください。
+quartz(file="~/Dropbox/00_Projects/dropbox_jahead_secondary2019/fig/fig_result_adl_4levels.pdf", type="pdf",  width=8,height=4.5)
 p
 dev.off()
