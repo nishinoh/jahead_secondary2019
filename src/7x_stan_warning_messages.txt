@@ -15,3 +15,11 @@ http://mc-stan.org/misc/warnings.html#maximum-treedepth-exceeded
 2: There were 4 chains where the estimated Bayesian Fraction of Missing Information was low. See
 http://mc-stan.org/misc/warnings.html#bfmi-low 
 3: Examine the pairs() plot to diagnose sampling problems
+
+IADLのみのモデル
+警告メッセージ: 
+1: There were 33 transitions after warmup that exceeded the maximum treedepth. Increase max_treedepth above 10. See
+http://mc-stan.org/misc/warnings.html#maximum-treedepth-exceeded 
+2: There were 4 chains where the estimated Bayesian Fraction of Missing Information was low. See
+http://mc-stan.org/misc/warnings.html#bfmi-low 
+3: Examine the pairs() plot to diagnose sampling problems
