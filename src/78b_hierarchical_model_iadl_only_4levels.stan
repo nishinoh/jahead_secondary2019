@@ -13,7 +13,7 @@ data {
     // real<lower=0> t_age[P]; //回答者の年齢
     int<lower=0, upper=6> lim_iadl[P]; //ここから世帯単位の情報
     int<lower=0, upper=1> living_spouse[P]; //配偶者と住んでいるか
-    int<lower=0> use_homehelp_n[P]; //特に着目する説明変数
+    int<lower=0, upper=1> use_homehelp_d[P]; //特に着目する説明変数
     int<lower=0, upper=1> t_female[R]; //回答者の性別(女性ダミー)
 }
 
@@ -42,7 +42,7 @@ transformed parameters {
     for(r in 1:R)
         ar[r] = b_0 + br_1*t_female[r] + er[r];
     for(p in 1:P)
-        ap[p] = ar[id_n[p]] + bp_1*lim_iadl[p] + bp_2*living_spouse[p] + bp_3*use_homehelp_n[p] + ep[p];
+        ap[p] = ar[id_n[p]] + bp_1*lim_iadl[p] + bp_2*living_spouse[p] + bp_3*use_homehelp_d[p] + ep[p];
     for(c in 1:C)
         ac[c] = ap[id_personyear_n[c]] + bc_1*ch_dist_living_l[c] + ec[c];
     for(i in 1:I)
