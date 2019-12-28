@@ -2,7 +2,7 @@
 library(tidyverse)
 library(plm)
 
-load("~/Data/JAHEAD/Process_Files/data_after_14.rda")
+load("~/Data/JAHEAD/Process_Files/data_after_41_data_frame.rda")
 
 theme_set(theme_bw(base_size = 14, base_family = "HiraKakuProN-W3") +
               theme(axis.text=element_text(colour="black")))
