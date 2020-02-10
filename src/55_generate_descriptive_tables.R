@@ -21,9 +21,9 @@ makeDiscriptiveTable <- function(data){
 }
 
 tab_i_level <-  data_complete_cases %>% 
-    select(do_care_parents_adl, do_care_parents_iadl, is_real_child, ch_female) %>% 
+    select(do_care_parents_adl, do_care_parents_iadl_only, is_real_child, ch_female) %>% 
     rename(ADLのケア提供 = do_care_parents_adl,
-           IADLのケア提供 = do_care_parents_iadl,
+           IADLのみのケア提供 = do_care_parents_iadl_only,
            実子ダミー = is_real_child,
            女性ダミー = ch_female) %>% 
     makeDiscriptiveTable(.)
@@ -53,6 +53,7 @@ tab_r_level <- data_complete_cases %>%
 
 discriptive_table <- tab_i_level %>% 
     bind_rows(tab_c_level, tab_p_level, tab_r_level) %>% 
+    rename(`　` = key) %>% #変数名のところの行名は空白に。
     xtable(., label="tab_discriptive_table", caption = "記述統計量", digits = c(0,0,0,2,2,0,0))
 
 print(discriptive_table, file=str_c(dir, "descriptive_statistics.tex"),
