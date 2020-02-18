@@ -53,5 +53,5 @@ list_stan_4levels <- c(list(I = nrow(data_stan_individuals)),
 
 ##### Fin. 作成したファイルを保存 ================================================
 # 作成したファイルを保存し、これまで作ったオブジェクトはいったん全て削除
-save(list_stan_4levels, file="~/Data/JAHEAD/Process_Files/data_after_73a_74a.rda")
+save(list_stan_4levels, file="~/Data/JAHEAD/Process_Files/data_after_70.rda")
 rm(list = ls())
