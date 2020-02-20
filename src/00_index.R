@@ -30,6 +30,4 @@ source("src/41_identify_complete_cases.R", echo=TRUE)
 ##### 7. Stanで推定 ===================================================
 
 # それぞれの推定に使うデータを作成
-source("src/71a_72a_prepare_list_for_2level_models.R", echo=TRUE)
-source("src/73a_74a_prepare_list_for_4level_models.R", echo=TRUE)
-source("src/75a_76a_prepare_list_for_3level_models.R", echo=TRUE)
+source("src/70_prepare_list_for_4level_models.R", echo=TRUE)
